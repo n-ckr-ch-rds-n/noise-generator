@@ -37,4 +37,8 @@ export class GeneratorShellComponent implements OnInit {
     }
   }
 
+  changeFrequency(event: any) {
+    console.log(event.target.valueAsNumber);
+    this.oscillator.frequency.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
+  }
 }

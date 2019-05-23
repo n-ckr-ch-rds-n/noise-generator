@@ -7,3 +7,7 @@
   <option value="sawtooth">Sawtooth</option>
   <option value="triangle">Triangle</option>
 </select>
+<div>
+  <input type="range" id="start" name="volume" min="0" max="2000" (input)="changeFrequency($event)">
+  <label>Frequency</label>
+</div>
