@@ -8,14 +8,18 @@
   <option value="triangle">Triangle</option>
 </select>
 <div>
-  <input type="range" name="frequency" min="0" max="2000" (input)="changeFrequency($event)">
-  <label>Frequency</label>
+  <label>Frequency
+    <input type="range" name="frequency" min="0" max="2000" (input)="changeFrequency($event)">
+  </label>
 </div>
 <div>
-  <input type="range" name="volume" min="0" max="1"  step="0.01" (input)="changeVolume($event)">
-  <label>Volume</label>
+  <label>Volume
+    <input type="range" name="volume" min="0" max="1"  step="0.01" (input)="changeVolume($event)">
+  </label>
 </div>
 <div>
-  <input type="range" name="volume" min="0" max="100" (input)="detune($event)">
-  <label>Detune</label>
+  <label>Detune
+    <input type="range" name="volume" min="0" max="100" (input)="detune($event)">
+  </label>
 </div>
+<button (click)="addDelay()">Delay</button>

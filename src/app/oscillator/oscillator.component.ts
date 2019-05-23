@@ -54,4 +54,11 @@ export class OscillatorComponent implements OnInit {
   detune(event: any) {
     this.oscillator.detune.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
+
+  addDelay() {
+    const delay = this.audioContext.createDelay();
+    this.oscillator.connect(delay);
+    delay.connect(this.audioContext.destination);
+  }
+
 }
