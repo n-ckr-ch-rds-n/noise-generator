@@ -1,0 +1,21 @@
+<h2>Oscillator-{{number}}</h2>
+<button (click)="startOscillator()">On</button>
+<button (click)="stopOscillator()">Off</button>
+<select (change)="selectWaveform($event)">
+  <option value="sine">Sine</option>
+  <option value="square">Square</option>
+  <option value="sawtooth">Sawtooth</option>
+  <option value="triangle">Triangle</option>
+</select>
+<div>
+  <input type="range" name="frequency" min="0" max="2000" (input)="changeFrequency($event)">
+  <label>Frequency</label>
+</div>
+<div>
+  <input type="range" name="volume" min="0" max="1"  step="0.01" (input)="changeVolume($event)">
+  <label>Volume</label>
+</div>
+<div>
+  <input type="range" name="volume" min="0" max="100" (input)="detune($event)">
+  <label>Detune</label>
+</div>

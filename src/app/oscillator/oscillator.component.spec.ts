@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeneratorShellComponent } from './generator-shell.component';
+import { OscillatorComponent } from './oscillator.component';
 
 describe('GeneratorShellComponent', () => {
-  let component: GeneratorShellComponent;
-  let fixture: ComponentFixture<GeneratorShellComponent>;
+  let component: OscillatorComponent;
+  let fixture: ComponentFixture<OscillatorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeneratorShellComponent ]
+      declarations: [ OscillatorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeneratorShellComponent);
+    fixture = TestBed.createComponent(OscillatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

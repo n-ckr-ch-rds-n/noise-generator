@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
 import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audio-context';
 
 @Component({
-  selector: 'app-generator-shell',
-  templateUrl: './generator-shell.component.html',
-  styleUrls: ['./generator-shell.component.scss']
+  selector: 'app-oscillator',
+  templateUrl: './oscillator.component.html',
+  styleUrls: ['./oscillator.component.scss']
 })
-export class GeneratorShellComponent implements OnInit {
+export class OscillatorComponent implements OnInit {
   oscillator: IOscillatorNode<IBaseAudioContext>;
   private gainNode: IGainNode<IBaseAudioContext>;
+
+  @Input()
+  number: number;
 
   constructor(private audioContext: AudioContext) { }
 
@@ -45,6 +48,10 @@ export class GeneratorShellComponent implements OnInit {
   }
 
   changeVolume(event: any) {
-    this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
+    if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime) };
+  }
+
+  detune(event: any) {
+    this.oscillator.detune.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
 }
