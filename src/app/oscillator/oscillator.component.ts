@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
-import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audio-context';
+import { IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode } from 'standardized-audio-context';
 
 @Component({
   selector: 'app-oscillator',
@@ -8,8 +8,9 @@ import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audi
   styleUrls: ['./oscillator.component.scss']
 })
 export class OscillatorComponent implements OnInit {
-  oscillator: IOscillatorNode<IBaseAudioContext>;
+  private oscillator: IOscillatorNode<IBaseAudioContext>;
   private gainNode: IGainNode<IBaseAudioContext>;
+  private delayModule: IDelayNode<IBaseAudioContext>;
 
   @Input()
   number: number;
@@ -20,12 +21,13 @@ export class OscillatorComponent implements OnInit {
   }
 
   startOscillator() {
+    this.stopOscillator();
     this.createOscillator();
     this.oscillator.start();
   }
 
   stopOscillator(): void {
-    this.oscillator.stop();
+    if (this.oscillator) { this.oscillator.stop() } ;
   }
 
   createOscillator(): void {
@@ -56,9 +58,16 @@ export class OscillatorComponent implements OnInit {
   }
 
   addDelay() {
-    const delay = this.audioContext.createDelay();
-    this.oscillator.connect(delay);
-    delay.connect(this.audioContext.destination);
+    this.removeDelay();
+    if (this.oscillator) {
+      this.delayModule = this.audioContext.createDelay();
+      this.oscillator.connect(this.delayModule);
+      this.delayModule.connect(this.gainNode);
+    }
+  }
+
+  removeDelay() {
+    if (this.delayModule) { this.delayModule.disconnect(); };
   }
 
 }
