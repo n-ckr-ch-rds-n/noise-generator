@@ -1,13 +1,17 @@
 <h1>NOISE GENERATOR</h1>
 <button (click)="startOscillator()">Start</button>
 <button (click)="stopOscillator()">Stop</button>
-<select [(ngModel)]="oscillatorType" (ngModelChange)="selectWaveform(oscillatorType)">
+<select [(ngModel)]="oscillatorType" (change)="selectWaveform($event)">
   <option value="sine">Sine</option>
   <option value="square">Square</option>
   <option value="sawtooth">Sawtooth</option>
   <option value="triangle">Triangle</option>
 </select>
 <div>
-  <input type="range" id="start" name="volume" min="0" max="2000" (input)="changeFrequency($event)">
+  <input type="range" name="frequency" min="0" max="2000" (input)="changeFrequency($event)">
   <label>Frequency</label>
+</div>
+<div>
+  <input type="range" name="volume" min="0" max="1"  step="0.1" (input)="changeVolume($event)">
+  <label>Volume</label>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
-import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardized-audio-context';
+import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audio-context';
 
 @Component({
   selector: 'app-generator-shell',
@@ -9,7 +9,7 @@ import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardize
 })
 export class GeneratorShellComponent implements OnInit {
   oscillator: IOscillatorNode<IBaseAudioContext>;
-  oscillatorType: TOscillatorType;
+  private gainNode: IGainNode<IBaseAudioContext>;
 
   constructor(private audioContext: AudioContext) { }
 
@@ -21,24 +21,30 @@ export class GeneratorShellComponent implements OnInit {
     this.oscillator.start();
   }
 
-  stopOscillator() {
+  stopOscillator(): void {
     this.oscillator.stop();
   }
 
-  createOscillator() {
+  createOscillator(): void {
     this.oscillator = this.audioContext.createOscillator();
-    if (this.oscillatorType) this.oscillator.type = this.oscillatorType;
-    this.oscillator.connect(this.audioContext.destination);
+    this.createGainNode(this.oscillator);
+    this.gainNode.connect(this.audioContext.destination);
   }
 
-  selectWaveform(waveForm: TOscillatorType) {
-    if (this.oscillator) {
-      this.oscillator.type = this.oscillatorType;
-    }
+  createGainNode(oscillator: IOscillatorNode<IBaseAudioContext>) {
+    this.gainNode = this.audioContext.createGain();
+    oscillator.connect(this.gainNode);
+  }
+
+  selectWaveform(event: any) {
+    if (this.oscillator) { this.oscillator.type = event.target.value; }
   }
 
   changeFrequency(event: any) {
-    console.log(event.target.valueAsNumber);
     this.oscillator.frequency.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
+  }
+
+  changeVolume(event: any) {
+    this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
 }
