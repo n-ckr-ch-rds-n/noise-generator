@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GeneratorShellComponent } from './generator-shell/generator-shell.component';
 import {AudioContextModule} from 'angular-audio-context';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {AudioContextModule} from 'angular-audio-context';
   ],
   imports: [
     BrowserModule,
-    AudioContextModule.forRoot('balanced')
+    AudioContextModule.forRoot('balanced'),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

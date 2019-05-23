@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
-import { IOscillatorNode, IBaseAudioContext } from 'standardized-audio-context';
+import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardized-audio-context';
 
 @Component({
   selector: 'app-generator-shell',
@@ -9,6 +9,7 @@ import { IOscillatorNode, IBaseAudioContext } from 'standardized-audio-context';
 })
 export class GeneratorShellComponent implements OnInit {
   oscillator: IOscillatorNode<IBaseAudioContext>;
+  oscillatorType: TOscillatorType;
 
   constructor(private audioContext: AudioContext) { }
 
@@ -16,13 +17,24 @@ export class GeneratorShellComponent implements OnInit {
   }
 
   startOscillator() {
-    this.oscillator = this.audioContext.createOscillator();
-    this.oscillator.connect(this.audioContext.destination);
+    this.createOscillator();
     this.oscillator.start();
   }
 
   stopOscillator() {
     this.oscillator.stop();
+  }
+
+  createOscillator() {
+    this.oscillator = this.audioContext.createOscillator();
+    if (this.oscillatorType) this.oscillator.type = this.oscillatorType;
+    this.oscillator.connect(this.audioContext.destination);
+  }
+
+  selectWaveform(waveForm: TOscillatorType) {
+    if (this.oscillator) {
+      this.oscillator.type = this.oscillatorType;
+    }
   }
 
 }
