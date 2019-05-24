@@ -67,7 +67,11 @@ export class OscillatorComponent implements OnInit {
   }
 
   removeDelay() {
-    if (this.delayModule) { this.delayModule.disconnect(); };
+    if (this.delayModule) { this.delayModule.disconnect(); }
+  }
+
+  setDelayTime(event: any) {
+    this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
 
 }
