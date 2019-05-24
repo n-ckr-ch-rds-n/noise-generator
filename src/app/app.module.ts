@@ -7,13 +7,17 @@ import {FormsModule} from '@angular/forms';
 import {OscillatorComponent} from './oscillator/oscillator.component';
 import { WaveformWidgetComponent } from './waveform-widget/waveform-widget.component';
 import { FrequencyWidgetComponent } from './frequency-widget/frequency-widget.component';
+import { NoiseGeneratorComponent } from './noise-generator/noise-generator.component';
+import { NoiseMachineComponent } from './noise-machine/noise-machine.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OscillatorComponent,
     WaveformWidgetComponent,
-    FrequencyWidgetComponent
+    FrequencyWidgetComponent,
+    NoiseGeneratorComponent,
+    NoiseMachineComponent
   ],
   imports: [
     BrowserModule,
