@@ -6,12 +6,14 @@ import {AudioContextModule} from 'angular-audio-context';
 import {FormsModule} from '@angular/forms';
 import {OscillatorComponent} from './oscillator/oscillator.component';
 import { WaveformWidgetComponent } from './waveform-widget/waveform-widget.component';
+import { FrequencyWidgetComponent } from './frequency-widget/frequency-widget.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OscillatorComponent,
-    WaveformWidgetComponent
+    WaveformWidgetComponent,
+    FrequencyWidgetComponent
   ],
   imports: [
     BrowserModule,

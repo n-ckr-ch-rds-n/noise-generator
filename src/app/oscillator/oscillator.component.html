@@ -4,11 +4,7 @@
   <span class="slider round"></span>
 </label>
 <app-waveform-widget [oscillator]="oscillator"></app-waveform-widget>
-<div>
-  <label>Frequency
-    <input type="range" name="frequency" min="0" max="2000" (input)="changeFrequency($event)">
-  </label>
-</div>
+<app-frequency-widget [oscillator]="oscillator"></app-frequency-widget>
 <div>
   <label>Volume
     <input type="range" name="volume" min="0" max="1"  step="0.01" (input)="changeVolume($event)">

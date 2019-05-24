@@ -41,10 +41,6 @@ export class OscillatorComponent implements OnInit {
     oscillator.connect(this.gainNode);
   }
 
-  selectWaveform(event: any) {
-    if (this.oscillator) { this.oscillator.type = event.target.value; }
-  }
-
   changeFrequency(event: any) {
     this.oscillator.frequency.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
