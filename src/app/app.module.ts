@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import {AudioContextModule} from 'angular-audio-context';
 import {FormsModule} from '@angular/forms';
 import {OscillatorComponent} from './oscillator/oscillator.component';
+import { WaveformWidgetComponent } from './waveform-widget/waveform-widget.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OscillatorComponent
+    OscillatorComponent,
+    WaveformWidgetComponent
   ],
   imports: [
     BrowserModule,

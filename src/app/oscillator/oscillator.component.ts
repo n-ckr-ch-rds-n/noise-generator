@@ -27,7 +27,7 @@ export class OscillatorComponent implements OnInit {
   }
 
   stopOscillator(): void {
-    if (this.oscillator) { this.oscillator.stop() } ;
+    if (this.oscillator) { this.oscillator.stop(); } ;
   }
 
   createOscillator(): void {
@@ -74,4 +74,7 @@ export class OscillatorComponent implements OnInit {
     this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
 
+  toggleSwitch(event: any) {
+    event.target.checked ? this.startOscillator() : this.stopOscillator();
+  }
 }

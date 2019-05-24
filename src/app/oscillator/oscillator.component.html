@@ -1,12 +1,9 @@
 <h2>Oscillator-{{number}}</h2>
-<button (click)="startOscillator()">On</button>
-<button (click)="stopOscillator()">Off</button>
-<select (change)="selectWaveform($event)">
-  <option value="sine">Sine</option>
-  <option value="square">Square</option>
-  <option value="sawtooth">Sawtooth</option>
-  <option value="triangle">Triangle</option>
-</select>
+<label class="switch">
+  <input type="checkbox" (input)="toggleSwitch($event)">
+  <span class="slider round"></span>
+</label>
+<app-waveform-widget [oscillator]="oscillator"></app-waveform-widget>
 <div>
   <label>Frequency
     <input type="range" name="frequency" min="0" max="2000" (input)="changeFrequency($event)">
