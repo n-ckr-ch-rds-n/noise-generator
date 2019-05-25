@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AudioContext} from 'angular-audio-context';
 import {IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode} from 'standardized-audio-context';
 import vibrato from 'vibrato';
@@ -8,7 +8,7 @@ import vibrato from 'vibrato';
   templateUrl: './fx-box.component.html',
   styleUrls: ['./fx-box.component.scss']
 })
-export class FxBoxComponent {
+export class FxBoxComponent implements OnInit {
   private delayModule: IDelayNode<IBaseAudioContext>;
 
   @Input()
@@ -18,6 +18,10 @@ export class FxBoxComponent {
   gainNode: IGainNode<IBaseAudioContext>;
 
   constructor(private audioContext: AudioContext) { }
+
+  ngOnInit() {
+    this.addVibrato(0, 0);
+  }
 
   addDelay() {
     this.removeDelay();
@@ -36,7 +40,19 @@ export class FxBoxComponent {
     if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
   }
 
-  addVibrato() {
-    vibrato(this.audioContext, this.oscillator.frequency, { rate: 4, depth: 16 });
+  addVibrato(rate?: number, depth?: number) {
+    if (this.oscillator) { vibrato(this.audioContext, this.oscillator.frequency, { rate, depth }); }
+  }
+
+  changeVibratoRate(event: any) {
+    this.addVibrato(event.target.valueAsNumber, null);
+  }
+
+  changeVibratoDepth(event: any) {
+    this.addVibrato(null, event.target.valueAsNumber);
+  }
+
+  switchHandler(switchedOn: boolean) {
+    switchedOn ? this.addDelay() : this.removeDelay();
   }
 }

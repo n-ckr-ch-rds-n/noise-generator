@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
-import { IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode } from 'standardized-audio-context';
+import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audio-context';
 
 @Component({
   selector: 'app-oscillator',
