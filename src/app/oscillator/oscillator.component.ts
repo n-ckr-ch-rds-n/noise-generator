@@ -27,7 +27,7 @@ export class OscillatorComponent implements OnInit {
   }
 
   stopOscillator(): void {
-    if (this.oscillator) { this.oscillator.stop(); } ;
+    if (this.oscillator) { this.oscillator.stop(); }
   }
 
   createOscillator(): void {
@@ -46,7 +46,7 @@ export class OscillatorComponent implements OnInit {
   }
 
   changeVolume(event: any) {
-    if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime) };
+    if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
   }
 
   detune(event: any) {

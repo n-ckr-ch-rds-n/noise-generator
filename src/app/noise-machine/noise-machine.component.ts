@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AudioContext} from 'angular-audio-context';
+import {AudioContext, IAudioContext} from 'standardized-audio-context';
 
 @Component({
   selector: 'app-noise-machine',
@@ -7,33 +7,28 @@ import {AudioContext} from 'angular-audio-context';
   styleUrls: ['./noise-machine.component.scss']
 })
 export class NoiseMachineComponent implements OnInit {
-  bufferSize = 4096;
+  audioContext: IAudioContext;
 
-  constructor(private audioContext: AudioContext) { }
+  constructor() { }
 
   ngOnInit() {
+    this.audioContext = new AudioContext();
   }
 
   generateNoise() {
-    let b0, b1, b2, b3, b4, b5, b6;
-    b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
-    const node = this.audioContext.createScriptProcessor(this.bufferSize, 1, 1);
-    node.onaudioprocess = (e) => {
-      const output = e.outputBuffer.getChannelData(0);
-      for (let i = 0; i < this.bufferSize; i++) {
-        const white = Math.random() * 2 - 1;
-        b0 = 0.99886 * b0 + white * 0.0555179;
-        b1 = 0.99332 * b1 + white * 0.0750759;
-        b2 = 0.96900 * b2 + white * 0.1538520;
-        b3 = 0.86650 * b3 + white * 0.3104856;
-        b4 = 0.55000 * b4 + white * 0.5329522;
-        b5 = -0.7616 * b5 - white * 0.0168980;
-        output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-        output[i] *= 0.11; // (roughly) compensate for gain
-        b6 = white * 0.115926;
-      }
-    };
-    return node;
+    const bufferSize = 2 * this.audioContext.sampleRate;
+    const noiseBuffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+
+    const whiteNoise = this.audioContext.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+    whiteNoise.start(0);
+
+    whiteNoise.connect(this.audioContext.destination);
   }
 
 
