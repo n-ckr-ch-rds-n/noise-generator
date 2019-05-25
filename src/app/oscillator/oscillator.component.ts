@@ -40,7 +40,7 @@ export class OscillatorComponent implements OnInit {
     this.gainNode.connect(this.audioContext.destination);
   }
 
-  toggleSwitch(switchedOn: boolean): void {
+  switchHandler(switchedOn: boolean): void {
     switchedOn ? this.startOscillator() : this.stopOscillator();
   }
 }
