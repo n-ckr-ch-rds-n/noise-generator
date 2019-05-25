@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AudioContext} from 'angular-audio-context';
 import {IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode} from 'standardized-audio-context';
+import vibrato from 'vibrato';
 
 @Component({
   selector: 'app-fx-box',
@@ -33,5 +34,9 @@ export class FxBoxComponent {
 
   setDelayTime(event: any) {
     if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
+  }
+
+  addVibrato() {
+    vibrato(this.audioContext, this.oscillator.frequency, { rate: 4, depth: 16 });
   }
 }
