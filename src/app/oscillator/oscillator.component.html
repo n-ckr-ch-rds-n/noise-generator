@@ -6,11 +6,7 @@
 <app-waveform-widget [oscillator]="oscillator"></app-waveform-widget>
 <app-frequency-widget [oscillator]="oscillator"></app-frequency-widget>
 <app-detune-widget [oscillator]="oscillator"></app-detune-widget>
-<div>
-  <label>Volume
-    <input type="range" name="volume" min="0" max="1"  step="0.01" (input)="changeVolume($event)">
-  </label>
-</div>
+<app-volume-widget [oscillator]="oscillator" [gainNode]="gainNode"></app-volume-widget>
 <button (click)="addDelay()">Add Delay</button>
 <button (click)="removeDelay()">Remove Delay</button>
 <div>

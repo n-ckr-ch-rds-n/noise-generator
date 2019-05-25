@@ -9,6 +9,7 @@ import { WaveformWidgetComponent } from './waveform-widget/waveform-widget.compo
 import { FrequencyWidgetComponent } from './frequency-widget/frequency-widget.component';
 import { NoiseMachineComponent } from './noise-machine/noise-machine.component';
 import { DetuneWidgetComponent } from './detune-widget/detune-widget.component';
+import { VolumeWidgetComponent } from './volume-widget/volume-widget.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DetuneWidgetComponent } from './detune-widget/detune-widget.component';
     WaveformWidgetComponent,
     FrequencyWidgetComponent,
     NoiseMachineComponent,
-    DetuneWidgetComponent
+    DetuneWidgetComponent,
+    VolumeWidgetComponent
   ],
   imports: [
     BrowserModule,
