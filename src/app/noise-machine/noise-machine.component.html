@@ -1,5 +1,10 @@
-<h2>Noise Generator</h2>
-<app-on-off-switch (switchedOn)="switchHandler($event)"></app-on-off-switch>
-<div>
-  <label>Filter<input type="range" name="volume" min="0" max="1500" (input)="setFilterFrequency($event)"></label>
+<div class="instrument">
+  <div>
+    <h2>Noise Machine</h2>
+    <app-on-off-switch (switchedOn)="switchHandler($event)"></app-on-off-switch>
+  </div>
+  <div>
+    <label>Filter<input type="range" name="volume" min="0" max="1500" (input)="setFilterFrequency($event)"></label>
+  </div>
 </div>
+
