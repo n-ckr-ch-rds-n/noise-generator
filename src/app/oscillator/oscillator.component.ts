@@ -41,10 +41,6 @@ export class OscillatorComponent implements OnInit {
     oscillator.connect(this.gainNode);
   }
 
-  changeFrequency(event: any) {
-    this.oscillator.frequency.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
-  }
-
   changeVolume(event: any) {
     if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
   }
