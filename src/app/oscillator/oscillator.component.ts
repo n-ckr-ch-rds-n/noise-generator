@@ -10,7 +10,6 @@ import { IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode } from 'stand
 export class OscillatorComponent implements OnInit {
   private oscillator: IOscillatorNode<IBaseAudioContext>;
   private gainNode: IGainNode<IBaseAudioContext>;
-  private delayModule: IDelayNode<IBaseAudioContext>;
 
   @Input()
   number: number;
@@ -39,23 +38,6 @@ export class OscillatorComponent implements OnInit {
   createGainNode(oscillator: IOscillatorNode<IBaseAudioContext>) {
     this.gainNode = this.audioContext.createGain();
     oscillator.connect(this.gainNode);
-  }
-
-  addDelay() {
-    this.removeDelay();
-    if (this.oscillator) {
-      this.delayModule = this.audioContext.createDelay();
-      this.oscillator.connect(this.delayModule);
-      this.delayModule.connect(this.gainNode);
-    }
-  }
-
-  removeDelay() {
-    if (this.delayModule) { this.delayModule.disconnect(); }
-  }
-
-  setDelayTime(event: any) {
-    if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
   }
 
   toggleSwitch(event: any) {

@@ -44,7 +44,7 @@ export class NoiseMachineComponent implements OnInit {
   }
 
   stop(): void {
-    if (this.whiteNoise) { this.whiteNoise.disconnect(); }
+    if (this.whiteNoise) { this.whiteNoise.stop(); }
   }
 
   setFilterFrequency(event: any) {

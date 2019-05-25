@@ -10,6 +10,7 @@ import { FrequencyWidgetComponent } from './frequency-widget/frequency-widget.co
 import { NoiseMachineComponent } from './noise-machine/noise-machine.component';
 import { DetuneWidgetComponent } from './detune-widget/detune-widget.component';
 import { VolumeWidgetComponent } from './volume-widget/volume-widget.component';
+import { FxBoxComponent } from './fx-box/fx-box.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { VolumeWidgetComponent } from './volume-widget/volume-widget.component';
     FrequencyWidgetComponent,
     NoiseMachineComponent,
     DetuneWidgetComponent,
-    VolumeWidgetComponent
+    VolumeWidgetComponent,
+    FxBoxComponent
   ],
   imports: [
     BrowserModule,
