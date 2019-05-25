@@ -17,6 +17,7 @@ export class OscillatorComponent implements OnInit {
   constructor(private audioContext: AudioContext) { }
 
   ngOnInit() {
+    this.gainNode = this.audioContext.createGain();
   }
 
   startOscillator() {
@@ -31,13 +32,12 @@ export class OscillatorComponent implements OnInit {
 
   createOscillator(): void {
     this.oscillator = this.audioContext.createOscillator();
-    this.createGainNode(this.oscillator);
-    this.gainNode.connect(this.audioContext.destination);
+    this.connectOscillatorToSpeakers();
   }
 
-  createGainNode(oscillator: IOscillatorNode<IBaseAudioContext>) {
-    this.gainNode = this.audioContext.createGain();
-    oscillator.connect(this.gainNode);
+  connectOscillatorToSpeakers() {
+    this.oscillator.connect(this.gainNode);
+    this.gainNode.connect(this.audioContext.destination);
   }
 
   toggleSwitch(switchedOn: boolean): void {
