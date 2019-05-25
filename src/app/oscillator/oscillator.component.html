@@ -1,8 +1,5 @@
 <h2>Oscillator-{{number}}</h2>
-<label class="switch">
-  <input type="checkbox" (input)="toggleSwitch($event)">
-  <span class="slider round"></span>
-</label>
+<app-on-off-switch (switchedOn)="toggleSwitch($event)"></app-on-off-switch>
 <app-waveform-widget [oscillator]="oscillator"></app-waveform-widget>
 <app-frequency-widget [oscillator]="oscillator"></app-frequency-widget>
 <app-detune-widget [oscillator]="oscillator"></app-detune-widget>

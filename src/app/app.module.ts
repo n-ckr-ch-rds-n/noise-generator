@@ -11,6 +11,7 @@ import { NoiseMachineComponent } from './noise-machine/noise-machine.component';
 import { DetuneWidgetComponent } from './detune-widget/detune-widget.component';
 import { VolumeWidgetComponent } from './volume-widget/volume-widget.component';
 import { FxBoxComponent } from './fx-box/fx-box.component';
+import { OnOffSwitchComponent } from './on-off-switch/on-off-switch.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FxBoxComponent } from './fx-box/fx-box.component';
     NoiseMachineComponent,
     DetuneWidgetComponent,
     VolumeWidgetComponent,
-    FxBoxComponent
+    FxBoxComponent,
+    OnOffSwitchComponent
   ],
   imports: [
     BrowserModule,

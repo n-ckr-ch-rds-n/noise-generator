@@ -40,7 +40,7 @@ export class OscillatorComponent implements OnInit {
     oscillator.connect(this.gainNode);
   }
 
-  toggleSwitch(event: any) {
-    event.target.checked ? this.startOscillator() : this.stopOscillator();
+  toggleSwitch(switchedOn: boolean): void {
+    switchedOn ? this.startOscillator() : this.stopOscillator();
   }
 }
