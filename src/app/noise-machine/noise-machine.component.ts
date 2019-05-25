@@ -50,4 +50,8 @@ export class NoiseMachineComponent implements OnInit {
   setFilterFrequency(event: any) {
     this.filter.frequency.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
   }
+
+  switchHandler(switchedOn: boolean) {
+    switchedOn ? this.generateNoise() : this.stop();
+  }
 }
