@@ -8,6 +8,7 @@ import {OscillatorComponent} from './oscillator/oscillator.component';
 import { WaveformWidgetComponent } from './waveform-widget/waveform-widget.component';
 import { FrequencyWidgetComponent } from './frequency-widget/frequency-widget.component';
 import { NoiseMachineComponent } from './noise-machine/noise-machine.component';
+import { DetuneWidgetComponent } from './detune-widget/detune-widget.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NoiseMachineComponent } from './noise-machine/noise-machine.component';
     OscillatorComponent,
     WaveformWidgetComponent,
     FrequencyWidgetComponent,
-    NoiseMachineComponent
+    NoiseMachineComponent,
+    DetuneWidgetComponent
   ],
   imports: [
     BrowserModule,

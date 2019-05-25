@@ -45,10 +45,6 @@ export class OscillatorComponent implements OnInit {
     if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
   }
 
-  detune(event: any) {
-    this.oscillator.detune.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
-  }
-
   addDelay() {
     this.removeDelay();
     if (this.oscillator) {
@@ -63,7 +59,7 @@ export class OscillatorComponent implements OnInit {
   }
 
   setDelayTime(event: any) {
-    this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
+    if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
   }
 
   toggleSwitch(event: any) {
