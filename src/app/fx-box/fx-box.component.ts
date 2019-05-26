@@ -37,7 +37,7 @@ export class FxBoxComponent implements OnInit {
   }
 
   setDelayTime(event: any) {
-    if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
+    if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.value, this.audioContext.currentTime); }
   }
 
   addVibrato(rate?: number, depth?: number) {
@@ -45,11 +45,11 @@ export class FxBoxComponent implements OnInit {
   }
 
   changeVibratoRate(event: any) {
-    this.addVibrato(event.target.valueAsNumber, null);
+    this.addVibrato(event.value, null);
   }
 
   changeVibratoDepth(event: any) {
-    this.addVibrato(null, event.target.valueAsNumber);
+    this.addVibrato(null, event.value);
   }
 
   switchHandler(switchedOn: boolean) {

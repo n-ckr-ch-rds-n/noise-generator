@@ -1,6 +1,7 @@
 import {Component, Input } from '@angular/core';
 import {IOscillatorNode, IBaseAudioContext, IGainNode} from 'standardized-audio-context';
 import {AudioContext} from 'angular-audio-context';
+import {MatSliderChange} from '@angular/material';
 
 @Component({
   selector: 'app-volume-widget',
@@ -17,7 +18,7 @@ export class VolumeWidgetComponent {
 
   constructor(private audioContext: AudioContext) { }
 
-  changeVolume(event: any) {
-    if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime); }
+  changeVolume(event: MatSliderChange) {
+    if (this.oscillator) { this.gainNode.gain.setValueAtTime(event.value, this.audioContext.currentTime); }
   }
 }

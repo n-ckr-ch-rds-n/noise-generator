@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
 import { IOscillatorNode, IBaseAudioContext } from 'standardized-audio-context';
+import {MatSliderChange} from '@angular/material';
 
 
 @Component({
@@ -18,8 +19,8 @@ export class DetuneWidgetComponent implements OnInit {
   ngOnInit() {
   }
 
-  detune(event: any) {
-    this.oscillator.detune.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
+  detune(event: MatSliderChange) {
+    if (this.oscillator) { this.oscillator.detune.setValueAtTime(event.value, this.audioContext.currentTime); }
   }
 
 }

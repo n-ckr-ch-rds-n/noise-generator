@@ -2,18 +2,15 @@
 <h4>Delay</h4>
 <app-on-off-switch (switchedOn)="switchHandler($event)"></app-on-off-switch>
 <div>
-  <label>Delay Time
-    <input type="range" name="volume" min="0" max="1" step="0.01" (input)="setDelayTime($event)">
-  </label>
+  <h5>Delay Time</h5>
+  <mat-slider name="volume" min="0" max="1" step="0.01" (input)="setDelayTime($event)"></mat-slider>
 </div>
 <h4>Vibrato</h4>
 <div>
-  <label>Rate
-    <input type="range" name="frequency" min="0" max="50" (input)="changeVibratoRate($event)">
-  </label>
+  <h5>Rate</h5>
+  <mat-slider name="rate" min="0" max="50" (input)="changeVibratoRate($event)"></mat-slider>
 </div>
 <div>
-  <label>Depth
-    <input type="range" name="frequency" min="0" max="50" (input)="changeVibratoDepth($event)">
-  </label>
+  <h4>Depth</h4>
+  <mat-slider name="depth" min="0" max="50" (input)="changeVibratoDepth($event)"></mat-slider>
 </div>
