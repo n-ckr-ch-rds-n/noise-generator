@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
 import { IOscillatorNode, IBaseAudioContext } from 'standardized-audio-context';
 import {MatSliderChange} from '@angular/material';
@@ -10,6 +10,9 @@ import {MatSliderChange} from '@angular/material';
   styleUrls: ['./detune-widget.component.scss']
 })
 export class DetuneWidgetComponent implements OnInit {
+
+  @Output()
+  detuneValue: EventEmitter<number> = new EventEmitter<number>();
 
   @Input()
   oscillator: IOscillatorNode<IBaseAudioContext>;

@@ -24,7 +24,6 @@ export class InstrumentService {
 
   registerOscillator(key: string, oscillator: IOscillatorNode<IBaseAudioContext>) {
     this.activeOscillators.push({[key]: oscillator});
-    console.log(this.activeOscillators);
   }
 
   cleanOscillatorBank(key: string) {

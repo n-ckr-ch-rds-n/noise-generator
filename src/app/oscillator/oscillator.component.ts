@@ -13,6 +13,7 @@ export class OscillatorComponent implements OnInit {
   private oscillator: IOscillatorNode<IBaseAudioContext>;
   private gainNode: IGainNode<IBaseAudioContext>;
   waveType: TOscillatorType;
+  detuneValue = 0;
 
   @Input()
   number: number;
@@ -39,7 +40,7 @@ export class OscillatorComponent implements OnInit {
 
   configureOscillator(key: string) {
     this.oscillator.type = this.waveType;
-    this.oscillator.frequency.setValueAtTime(frequencyByKey[key], this.audioContext.currentTime);
+    this.oscillator.frequency.setValueAtTime(frequencyByKey[key] + this.detuneValue, this.audioContext.currentTime);
   }
 
   play(key: string): void {

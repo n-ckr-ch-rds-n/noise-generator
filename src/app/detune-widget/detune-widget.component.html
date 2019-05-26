@@ -1,4 +1,4 @@
 <div>
   <h4>Detune</h4>
-  <mat-slider name="detune" min="-3000" max="3000" (input)="detune($event)"></mat-slider>
+  <mat-slider name="detune" min="-3000" max="3000" (input)="detuneValue.emit($event.value)"></mat-slider>
 </div>
