@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
 import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audio-context';
+import {InstrumentService} from '../instrument.service';
 
 @Component({
   selector: 'app-oscillator',
@@ -14,7 +15,8 @@ export class OscillatorComponent implements OnInit {
   @Input()
   number: number;
 
-  constructor(private audioContext: AudioContext) { }
+  constructor(private audioContext: AudioContext,
+              private instrumentService: InstrumentService) { }
 
   ngOnInit() {
     this.gainNode = this.audioContext.createGain();
@@ -41,6 +43,11 @@ export class OscillatorComponent implements OnInit {
   }
 
   switchHandler(switchedOn: boolean): void {
-    switchedOn ? this.startOscillator() : this.stopOscillator();
+    if (switchedOn) {
+      this.createOscillator();
+      this.instrumentService.addOscillatorToBank(this.oscillator);
+    } else {
+      this.instrumentService.removeOscillatorFromBank(this.oscillator);
+    }
   }
 }

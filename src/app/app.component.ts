@@ -6,7 +6,7 @@ import {Component, HostListener} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'noise-generator';
+  title = 'NOIZZOR';
 
   @HostListener('document:keydown', ['$event'])
   onKeyDown(keydown: KeyboardEvent) {
