@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AudioContext} from 'angular-audio-context';
 import {IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode} from 'standardized-audio-context';
 import vibrato from 'vibrato';
+import {MatSliderChange} from '@angular/material';
 
 @Component({
   selector: 'app-fx-box',
@@ -44,11 +45,11 @@ export class FxBoxComponent implements OnInit {
     if (this.oscillator) { vibrato(this.audioContext, this.oscillator.frequency, { rate, depth }); }
   }
 
-  changeVibratoRate(event: any) {
+  changeVibratoRate(event: MatSliderChange) {
     this.addVibrato(event.value, null);
   }
 
-  changeVibratoDepth(event: any) {
+  changeVibratoDepth(event: MatSliderChange) {
     this.addVibrato(null, event.value);
   }
 

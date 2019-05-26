@@ -1,10 +1,11 @@
 <div class="instrument">
-  <div>
+  <div class="oscillator">
     <h2>Noise Machine</h2>
     <app-on-off-switch (switchedOn)="switchHandler($event)"></app-on-off-switch>
   </div>
-  <div>
-    <label>Filter<input type="range" name="volume" min="0" max="1500" (input)="setFilterFrequency($event)"></label>
+  <div class="fx-box">
+    <h5>Filter</h5>
+    <mat-slider name="filter" min="0" max="1500" (input)="setFilterFrequency($event)"></mat-slider>
   </div>
 </div>
 

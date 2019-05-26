@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AudioContext, IAudioBuffer, IAudioContext,
   IAudioBufferSourceNode, IBaseAudioContext, IBiquadFilterNode} from 'standardized-audio-context';
+import {MatSliderChange} from '@angular/material';
 
 @Component({
   selector: 'app-noise-machine',
@@ -47,8 +48,8 @@ export class NoiseMachineComponent implements OnInit {
     if (this.whiteNoise) { this.whiteNoise.stop(); }
   }
 
-  setFilterFrequency(event: any) {
-    this.filter.frequency.setValueAtTime(event.target.valueAsNumber, this.audioContext.currentTime);
+  setFilterFrequency(event: MatSliderChange) {
+    this.filter.frequency.setValueAtTime(event.value, this.audioContext.currentTime);
   }
 
   switchHandler(switchedOn: boolean) {
