@@ -3,10 +3,8 @@
     <h2>Oscillator-{{number}}</h2>
     <app-on-off-switch (switchedOn)="switchHandler($event)"></app-on-off-switch>
     <app-waveform-widget (selectedWaveType)="waveType=$event"></app-waveform-widget>
-    <div class="oscillator-widgets">
-      <app-detune-widget [oscillator]="oscillator"></app-detune-widget>
-      <app-volume-widget [oscillator]="oscillator" [gainNode]="gainNode"></app-volume-widget>
-    </div>
+    <app-detune-widget [oscillator]="oscillator"></app-detune-widget>
+    <app-volume-widget [oscillator]="oscillator" [gainNode]="gainNode"></app-volume-widget>
   </div>
   <div class="fx-box">
     <app-fx-box [oscillator]="oscillator" [gainNode]="gainNode"></app-fx-box>

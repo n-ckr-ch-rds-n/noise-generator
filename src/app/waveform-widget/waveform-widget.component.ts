@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardized-audio-context';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { TOscillatorType } from 'standardized-audio-context';
 
 @Component({
   selector: 'app-waveform-widget',
@@ -15,10 +15,6 @@ export class WaveformWidgetComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  selectWaveform(waveForm: TOscillatorType) {
-    if (this.oscillator) { this.oscillator.type = waveForm; }
   }
 
 }

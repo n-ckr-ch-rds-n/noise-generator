@@ -29,7 +29,7 @@ export class AppComponent {
 
   playActiveInstruments(keydown: KeyboardEvent) {
     for (const instrument of this.instrumentService.instrumentBank) {
-      instrument.play();
+      instrument.play(keydown.key.toString());
     }
   }
 
