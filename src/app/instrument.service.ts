@@ -8,6 +8,11 @@ import {OscillatorComponent} from './oscillator/oscillator.component';
 export class InstrumentService {
   instrumentBank: Array<OscillatorComponent> = [];
   activeOscillators: Array<Record<string, IOscillatorNode<IBaseAudioContext>>> = [];
+  fxConfig = {
+    oscillator1: {vibratoRate: 0, vibratoDepth: 0},
+    oscillator2: {vibratoRate: 0, vibratoDepth: 0},
+    oscillator3: {vibratoRate: 0, vibratoDepth: 0}
+  };
 
   constructor() { }
 
@@ -34,5 +39,13 @@ export class InstrumentService {
     });
     this.activeOscillators = this.activeOscillators
       .filter(oscillator => !oscillator[key]);
+  }
+
+  registerVibratoRate(oscillatorName: string, value: number) {
+    this.fxConfig[oscillatorName].vibratoRate = value;
+  }
+
+  registerVibratoDepth(oscillatorName: string, value: number) {
+    this.fxConfig[oscillatorName].vibratoDepth = value;
   }
 }

@@ -3,6 +3,7 @@ import {AudioContext} from 'angular-audio-context';
 import {IOscillatorNode, IBaseAudioContext, IGainNode, IDelayNode} from 'standardized-audio-context';
 import vibrato from 'vibrato';
 import {MatSliderChange} from '@angular/material';
+import {InstrumentService} from '../instrument.service';
 
 @Component({
   selector: 'app-fx-box',
@@ -16,13 +17,15 @@ export class FxBoxComponent implements OnInit {
   oscillator: IOscillatorNode<IBaseAudioContext>;
 
   @Input()
+  oscillatorNumber: number;
+
+  @Input()
   gainNode: IGainNode<IBaseAudioContext>;
 
-  constructor(private audioContext: AudioContext) { }
+  constructor(private audioContext: AudioContext,
+              private instrumentService: InstrumentService) { }
 
-  ngOnInit() {
-    this.addVibrato(0, 0);
-  }
+  ngOnInit() { }
 
   addDelay() {
     this.removeDelay();
@@ -41,16 +44,18 @@ export class FxBoxComponent implements OnInit {
     if (this.delayModule) { this.delayModule.delayTime.setValueAtTime(event.value, this.audioContext.currentTime); }
   }
 
-  addVibrato(rate?: number, depth?: number) {
-    if (this.oscillator) { vibrato(this.audioContext, this.oscillator.frequency, { rate, depth }); }
+  addVibrato(oscillator: any, rate?: number, depth?: number) {
+    vibrato(this.audioContext, oscillator.frequency, { rate, depth });
   }
 
   changeVibratoRate(event: MatSliderChange) {
-    this.addVibrato(event.value, null);
+    this.instrumentService.registerVibratoRate(`oscillator${this.oscillatorNumber}`, event.value);
+    if (this.oscillator) { this.addVibrato(this.oscillator, event.value, null); }
   }
 
   changeVibratoDepth(event: MatSliderChange) {
-    this.addVibrato(null, event.value);
+    this.instrumentService.registerVibratoDepth(`oscillator${this.oscillatorNumber}`, event.value);
+    if (this.oscillator) { this.addVibrato(this.oscillator, null, event.value); }
   }
 
   switchHandler(switchedOn: boolean) {

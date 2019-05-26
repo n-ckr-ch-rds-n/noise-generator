@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
 import { IOscillatorNode, IBaseAudioContext, IGainNode, TOscillatorType } from 'standardized-audio-context';
 import {InstrumentService} from '../instrument.service';
 import {frequencyByKey} from '../frequency.by.key';
+import {FxBoxComponent} from '../fx-box/fx-box.component';
 
 @Component({
   selector: 'app-oscillator',
@@ -18,14 +19,15 @@ export class OscillatorComponent implements OnInit {
   @Input()
   number: number;
 
+  @ViewChild(FxBoxComponent)
+  fxBox: FxBoxComponent;
+
   constructor(private audioContext: AudioContext,
               private instrumentService: InstrumentService) { }
 
-  ngOnInit() {
-    this.gainNode = this.audioContext.createGain();
-  }
+  ngOnInit() { }
 
-  startOscillator() {
+  startOscillator(): void {
     this.oscillator.start();
   }
 
@@ -34,12 +36,24 @@ export class OscillatorComponent implements OnInit {
   }
 
   connectOscillatorToSpeakers(): void {
+    this.gainNode = this.audioContext.createGain();
     this.oscillator.connect(this.gainNode);
     this.gainNode.connect(this.audioContext.destination as IBaseAudioContext);
   }
 
-  configureOscillator(key: string) {
+  configureOscillator(key: string): void {
     this.oscillator.type = this.waveType;
+    this.setFrequency(key);
+    this.configureEffects();
+  }
+
+  configureEffects() {
+    const oscillatorName = `oscillator${this.number}`;
+    this.fxBox.addVibrato(this.oscillator, this.instrumentService.fxConfig[oscillatorName].vibratoRate,
+      this.instrumentService.fxConfig[oscillatorName].vibratoDepth);
+  }
+
+  setFrequency(key: string) {
     this.oscillator.frequency.setValueAtTime(frequencyByKey[key], this.audioContext.currentTime);
     this.oscillator.detune.setValueAtTime(this.detuneValue, this.audioContext.currentTime);
   }

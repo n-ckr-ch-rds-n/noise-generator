@@ -6,8 +6,8 @@
     <app-detune-widget [oscillator]="oscillator" (detuneValue)="detuneValue=$event"></app-detune-widget>
     <app-volume-widget [oscillator]="oscillator" [gainNode]="gainNode"></app-volume-widget>
   </div>
-  <div class="fx-box">
-    <app-fx-box [oscillator]="oscillator" [gainNode]="gainNode"></app-fx-box>
+  <div class="fx-box" #fxBox>
+    <app-fx-box [oscillator]="oscillator" [oscillatorNumber]="number" [gainNode]="gainNode"></app-fx-box>
   </div>
 </div>
 
