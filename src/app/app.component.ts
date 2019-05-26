@@ -35,7 +35,7 @@ export class AppComponent {
 
   stopActiveNodes(keyup: KeyboardEvent) {
     for (const instrument of this.instrumentService.instrumentBank) {
-      instrument.stop();
+      instrument.stop(keyup.key.toString());
     }
   }
 }

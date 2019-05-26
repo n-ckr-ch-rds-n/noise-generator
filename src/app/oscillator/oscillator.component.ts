@@ -28,8 +28,8 @@ export class OscillatorComponent implements OnInit {
     this.oscillator.start();
   }
 
-  stopOscillator(): void {
-    this.instrumentService.cleanOscillatorBank();
+  stopOscillator(key: string): void {
+    this.instrumentService.cleanOscillatorBank(key);
   }
 
   connectOscillatorToSpeakers(): void {
@@ -45,7 +45,7 @@ export class OscillatorComponent implements OnInit {
   play(key: string): void {
     if (this.isValidKey(key)) {
       this.oscillator = this.audioContext.createOscillator();
-      this.instrumentService.registerOscillator(this.oscillator);
+      this.instrumentService.registerOscillator(key, this.oscillator);
       this.configureOscillator(key);
       this.connectOscillatorToSpeakers();
       this.startOscillator();
@@ -56,8 +56,8 @@ export class OscillatorComponent implements OnInit {
     return Object.keys(frequencyByKey).includes(key);
   }
 
-  stop() {
-    this.stopOscillator();
+  stop(key: string) {
+    this.stopOscillator(key);
   }
 
   switchHandler(switchedOn: boolean): void {
