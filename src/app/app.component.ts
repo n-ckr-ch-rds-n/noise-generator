@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'noise-generator';
+
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(keydown: KeyboardEvent) {
+    console.log('keydown', keydown);
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  onKeyUp(keyup: KeyboardEvent) {
+    console.log('keyup', keyup);
+  }
 }
