@@ -6,13 +6,14 @@ body, h1 {
 }
 
 .instrument {
+  font-family: AppleMyungjo;
   background-color: #cccccc;
   margin-right: 5%;
   margin-left: 5%;
   margin-bottom: 5%;
   padding: 3%;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 50% 50%;
   border: darkolivegreen 0.5rem solid;
 }
 

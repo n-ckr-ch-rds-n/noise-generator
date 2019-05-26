@@ -1,16 +1,10 @@
 .oscillator {
   grid-column-start: 1;
-  justify-self: center;
-}
-
-.oscillator-widgets {
-  grid-column-start: 2;
-  justify-self: center;
+  justify-self: auto;
 }
 
 .fx-box {
-  grid-column-start: 3;
-  justify-self: center;
-  font-family: AppleMyungjo;
+  grid-column-start: 2;
+  justify-self: auto;
 }
 

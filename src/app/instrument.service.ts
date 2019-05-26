@@ -6,18 +6,30 @@ import {OscillatorComponent} from './oscillator/oscillator.component';
   providedIn: 'root'
 })
 export class InstrumentService {
-  instrumentBank: Array<any> = [];
+  instrumentBank: Array<OscillatorComponent> = [];
+  activeOscillators: Array<IOscillatorNode<IBaseAudioContext>> = [];
 
   constructor() { }
 
-  addOscillatorToBank(oscillator: OscillatorComponent) {
-    this.instrumentBank.push(oscillator);
+  addOscillatorToBank(oscillatorComponent: OscillatorComponent) {
+    this.instrumentBank.push(oscillatorComponent);
   }
 
-  removeOscillatorFromBank(oscillator: OscillatorComponent) {
+  removeOscillatorFromBank(oscillatorComponent: OscillatorComponent) {
     if (this.instrumentBank) {
       this.instrumentBank = this.instrumentBank
-        .filter(instrument => instrument !== oscillator);
+        .filter(instrument => instrument !== oscillatorComponent);
     }
+  }
+
+  registerOscillator(oscillator: IOscillatorNode<IBaseAudioContext>) {
+    this.activeOscillators.push(oscillator);
+  }
+
+  cleanOscillatorBank() {
+    this.activeOscillators.forEach(oscillator => {
+      oscillator.stop();
+    });
+    this.activeOscillators = [];
   }
 }
