@@ -42,12 +42,18 @@ export class OscillatorComponent implements OnInit {
     this.oscillator.frequency.setValueAtTime(frequencyByKey[key], this.audioContext.currentTime);
   }
 
-  play(key: string) {
-    this.oscillator = this.audioContext.createOscillator();
-    this.instrumentService.registerOscillator(this.oscillator);
-    this.configureOscillator(key);
-    this.connectOscillatorToSpeakers();
-    this.startOscillator();
+  play(key: string): void {
+    if (this.isValidKey(key)) {
+      this.oscillator = this.audioContext.createOscillator();
+      this.instrumentService.registerOscillator(this.oscillator);
+      this.configureOscillator(key);
+      this.connectOscillatorToSpeakers();
+      this.startOscillator();
+    }
+  }
+
+  isValidKey(key: string): boolean {
+    return Object.keys(frequencyByKey).includes(key);
   }
 
   stop() {
