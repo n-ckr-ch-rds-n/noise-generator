@@ -27,15 +27,12 @@ export class OscillatorComponent implements OnInit {
   }
 
   stopOscillator(): void {
-    if (this.oscillator) {
-      this.oscillator.stop();
-      this.instrumentService.cleanOscillatorBank();
-    }
+    this.instrumentService.cleanOscillatorBank();
   }
 
   connectOscillatorToSpeakers(): void {
     this.oscillator.connect(this.gainNode);
-    this.gainNode.connect(this.audioContext.destination);
+    this.gainNode.connect(this.audioContext.destination as IBaseAudioContext);
   }
 
   play() {

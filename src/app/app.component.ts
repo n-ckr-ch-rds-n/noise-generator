@@ -9,16 +9,21 @@ import {InstrumentService} from './instrument.service';
 })
 export class AppComponent {
   title = 'NOIZZOR';
+  keyDown = false;
 
   constructor(private instrumentService: InstrumentService) {}
 
   @HostListener('document:keydown', ['$event'])
   onKeyDown(keydown: KeyboardEvent) {
-    this.playActiveInstruments(keydown);
+    if (!this.keyDown) {
+      this.keyDown = true;
+      this.playActiveInstruments(keydown);
+    }
   }
 
   @HostListener('document:keyup', ['$event'])
   onKeyUp(keyup: KeyboardEvent) {
+    this.keyDown = false;
     this.stopActiveNodes(keyup);
   }
 
