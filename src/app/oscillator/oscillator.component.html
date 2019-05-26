@@ -2,7 +2,7 @@
   <div class="oscillator">
     <h2>Oscillator-{{number}}</h2>
     <app-on-off-switch (switchedOn)="switchHandler($event)"></app-on-off-switch>
-    <app-waveform-widget [oscillator]="oscillator"></app-waveform-widget>
+    <app-waveform-widget (selectedWaveType)="waveType=$event"></app-waveform-widget>
     <div class="oscillator-widgets">
       <app-detune-widget [oscillator]="oscillator"></app-detune-widget>
       <app-volume-widget [oscillator]="oscillator" [gainNode]="gainNode"></app-volume-widget>

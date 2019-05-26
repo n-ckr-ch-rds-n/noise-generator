@@ -1,7 +1,7 @@
 <div>
   <mat-form-field>
     <mat-label>Waveform</mat-label>
-    <mat-select (valueChange)="selectWaveform($event)" >
+    <mat-select (valueChange)="selectedWaveType.emit($event)" >
       <mat-option *ngFor="let waveType of waveTypes" [value]="waveType">
         {{waveType}}
       </mat-option>

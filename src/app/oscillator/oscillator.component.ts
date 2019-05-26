@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
-import { IOscillatorNode, IBaseAudioContext, IGainNode } from 'standardized-audio-context';
+import { IOscillatorNode, IBaseAudioContext, IGainNode, TOscillatorType } from 'standardized-audio-context';
 import {InstrumentService} from '../instrument.service';
 
 @Component({
@@ -11,6 +11,7 @@ import {InstrumentService} from '../instrument.service';
 export class OscillatorComponent implements OnInit {
   private oscillator: IOscillatorNode<IBaseAudioContext>;
   private gainNode: IGainNode<IBaseAudioContext>;
+  private waveType: TOscillatorType;
 
   @Input()
   number: number;
@@ -35,9 +36,14 @@ export class OscillatorComponent implements OnInit {
     this.gainNode.connect(this.audioContext.destination as IBaseAudioContext);
   }
 
+  configureOscillator() {
+    this.oscillator.type = this.waveType;
+  }
+
   play() {
     this.oscillator = this.audioContext.createOscillator();
     this.instrumentService.registerOscillator(this.oscillator);
+    this.configureOscillator();
     this.connectOscillatorToSpeakers();
     this.startOscillator();
   }

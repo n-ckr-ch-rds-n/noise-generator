@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardized-audio-context';
 
 @Component({
@@ -9,8 +9,8 @@ import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardize
 export class WaveformWidgetComponent implements OnInit {
   waveTypes: Array<TOscillatorType> = ['sine', 'square', 'sawtooth', 'triangle'];
 
-  @Input()
-  oscillator: IOscillatorNode<IBaseAudioContext>;
+  @Output()
+  selectedWaveType: EventEmitter<TOscillatorType> = new EventEmitter<TOscillatorType>();
 
   constructor() { }
 
