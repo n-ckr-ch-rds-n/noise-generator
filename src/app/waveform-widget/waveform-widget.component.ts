@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { IOscillatorNode, IBaseAudioContext } from 'standardized-audio-context';
+import { IOscillatorNode, IBaseAudioContext, TOscillatorType } from 'standardized-audio-context';
 
 @Component({
   selector: 'app-waveform-widget',
@@ -7,6 +7,7 @@ import { IOscillatorNode, IBaseAudioContext } from 'standardized-audio-context';
   styleUrls: ['./waveform-widget.component.scss']
 })
 export class WaveformWidgetComponent implements OnInit {
+  waveTypes: Array<TOscillatorType> = ['sine', 'square', 'sawtooth', 'triangle'];
 
   @Input()
   oscillator: IOscillatorNode<IBaseAudioContext>;
@@ -16,8 +17,8 @@ export class WaveformWidgetComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectWaveform(event: any) {
-    if (this.oscillator) { this.oscillator.type = event.target.value; }
+  selectWaveform(waveForm: TOscillatorType) {
+    if (this.oscillator) { this.oscillator.type = waveForm; }
   }
 
 }

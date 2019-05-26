@@ -1,6 +1,15 @@
-<select (change)="selectWaveform($event)">
-  <option value="sine">Sine</option>
-  <option value="square">Square</option>
-  <option value="sawtooth">Sawtooth</option>
-  <option value="triangle">Triangle</option>
-</select>
+<!--<select (change)="selectWaveform($event)">-->
+  <!--<option value="sine">Sine</option>-->
+  <!--<option value="square">Square</option>-->
+  <!--<option value="sawtooth">Sawtooth</option>-->
+  <!--<option value="triangle">Triangle</option>-->
+<!--</select>-->
+
+<mat-form-field>
+  <mat-label>Select waveform</mat-label>
+  <mat-select (valueChange)="selectWaveform($event)" >
+    <mat-option *ngFor="let waveType of waveTypes" [value]="waveType">
+      {{waveType}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

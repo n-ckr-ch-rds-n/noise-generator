@@ -13,7 +13,7 @@ import { VolumeWidgetComponent } from './volume-widget/volume-widget.component';
 import { FxBoxComponent } from './fx-box/fx-box.component';
 import { OnOffSwitchComponent } from './on-off-switch/on-off-switch.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSliderModule, MatSlideToggleModule} from '@angular/material';
+import {MatFormFieldModule, MatSelectModule, MatSliderModule, MatSlideToggleModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,9 @@ import {MatSliderModule, MatSlideToggleModule} from '@angular/material';
     AudioContextModule.forRoot('balanced'),
     FormsModule,
     MatSliderModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
