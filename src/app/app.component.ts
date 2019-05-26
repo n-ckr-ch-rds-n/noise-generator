@@ -1,4 +1,6 @@
 import {Component, HostListener} from '@angular/core';
+import {InstrumentService} from './instrument.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,13 +10,27 @@ import {Component, HostListener} from '@angular/core';
 export class AppComponent {
   title = 'NOIZZOR';
 
+  constructor(private instrumentService: InstrumentService) {}
+
   @HostListener('document:keydown', ['$event'])
   onKeyDown(keydown: KeyboardEvent) {
-    console.log('keydown', keydown);
+    this.playActiveInstruments(keydown);
   }
 
   @HostListener('document:keyup', ['$event'])
   onKeyUp(keyup: KeyboardEvent) {
-    console.log('keyup', keyup);
+    this.stopActiveNodes(keyup);
+  }
+
+  playActiveInstruments(keydown: KeyboardEvent) {
+    for (const instrument of this.instrumentService.instrumentBank) {
+      instrument.play();
+    }
+  }
+
+  stopActiveNodes(keyup: KeyboardEvent) {
+    for (const instrument of this.instrumentService.instrumentBank) {
+      instrument.stop();
+    }
   }
 }

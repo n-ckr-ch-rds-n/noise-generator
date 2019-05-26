@@ -23,8 +23,6 @@ export class OscillatorComponent implements OnInit {
   }
 
   startOscillator() {
-    this.stopOscillator();
-    this.createOscillator();
     this.oscillator.start();
   }
 
@@ -32,22 +30,26 @@ export class OscillatorComponent implements OnInit {
     if (this.oscillator) { this.oscillator.stop(); }
   }
 
-  createOscillator(): void {
-    this.oscillator = this.audioContext.createOscillator();
-    this.connectOscillatorToSpeakers();
-  }
-
-  connectOscillatorToSpeakers() {
+  connectOscillatorToSpeakers(): void {
     this.oscillator.connect(this.gainNode);
     this.gainNode.connect(this.audioContext.destination);
   }
 
+  play() {
+    this.oscillator = this.audioContext.createOscillator();
+    this.connectOscillatorToSpeakers();
+    this.startOscillator();
+  }
+
+  stop() {
+    this.stopOscillator();
+  }
+
   switchHandler(switchedOn: boolean): void {
     if (switchedOn) {
-      this.createOscillator();
-      this.instrumentService.addOscillatorToBank(this.oscillator);
+      this.instrumentService.addOscillatorToBank(this);
     } else {
-      this.instrumentService.removeOscillatorFromBank(this.oscillator);
+      this.instrumentService.removeOscillatorFromBank(this);
     }
   }
 }
