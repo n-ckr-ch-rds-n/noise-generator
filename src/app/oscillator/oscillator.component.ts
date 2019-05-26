@@ -40,7 +40,8 @@ export class OscillatorComponent implements OnInit {
 
   configureOscillator(key: string) {
     this.oscillator.type = this.waveType;
-    this.oscillator.frequency.setValueAtTime(frequencyByKey[key] + this.detuneValue, this.audioContext.currentTime);
+    this.oscillator.frequency.setValueAtTime(frequencyByKey[key], this.audioContext.currentTime);
+    this.oscillator.detune.setValueAtTime(this.detuneValue, this.audioContext.currentTime);
   }
 
   play(key: string): void {

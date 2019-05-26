@@ -23,6 +23,7 @@ export class DetuneWidgetComponent implements OnInit {
   }
 
   detune(event: MatSliderChange) {
+    this.detuneValue.emit(event.value);
     if (this.oscillator) { this.oscillator.detune.setValueAtTime(event.value, this.audioContext.currentTime); }
   }
 
