@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body, h1 {
   margin: 0;
 }
@@ -11,6 +13,5 @@ body, h1 {
   padding: 3%;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 100%;
 }
 

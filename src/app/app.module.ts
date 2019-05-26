@@ -12,6 +12,8 @@ import { DetuneWidgetComponent } from './detune-widget/detune-widget.component';
 import { VolumeWidgetComponent } from './volume-widget/volume-widget.component';
 import { FxBoxComponent } from './fx-box/fx-box.component';
 import { OnOffSwitchComponent } from './on-off-switch/on-off-switch.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSliderModule, MatSlideToggleModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,11 @@ import { OnOffSwitchComponent } from './on-off-switch/on-off-switch.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AudioContextModule.forRoot('balanced'),
-    FormsModule
+    FormsModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
