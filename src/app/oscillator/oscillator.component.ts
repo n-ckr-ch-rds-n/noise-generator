@@ -38,7 +38,7 @@ export class OscillatorComponent implements OnInit {
   connectOscillatorToSpeakers(): void {
     this.gainNode = this.audioContext.createGain();
     this.oscillator.connect(this.gainNode);
-    this.gainNode.connect(this.audioContext.destination as IBaseAudioContext);
+    this.gainNode.connect(this.audioContext.destination);
   }
 
   configureOscillator(key: string): void {
