@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IOscillatorNode, IBaseAudioContext, IAudioBufferSourceNode } from 'standardized-audio-context';
 import {OscillatorComponent} from './oscillator/oscillator.component';
 import {Instrument} from './instrument';
+import {frequencyByKey} from './frequency.by.key';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,9 @@ export class InstrumentService {
 
   registerVibratoDepth(oscillatorName: string, value: number) {
     this.fxConfig[oscillatorName].vibratoDepth = value;
+  }
+
+  isValidKey(key: string): boolean {
+    return Object.keys(frequencyByKey).includes(key);
   }
 }

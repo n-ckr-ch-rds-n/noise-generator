@@ -64,7 +64,9 @@ export class NoiseMachineComponent extends Instrument implements OnInit {
     }
   }
 
-  play() {
-    this.generateNoise();
+  play(key: string) {
+    if (this.instrumentService.isValidKey(key)) {
+      this.generateNoise();
+    }
   }
 }

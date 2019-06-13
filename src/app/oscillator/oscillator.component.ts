@@ -61,17 +61,13 @@ export class OscillatorComponent extends Instrument implements OnInit {
   }
 
   play(key: string): void {
-    if (this.isValidKey(key)) {
+    if (this.instrumentService.isValidKey(key)) {
       this.oscillator = this.audioContext.createOscillator();
       this.instrumentService.registerOscillator(key, this.oscillator);
       this.configureOscillator(key);
       this.connectOscillatorToSpeakers();
       this.startOscillator();
     }
-  }
-
-  isValidKey(key: string): boolean {
-    return Object.keys(frequencyByKey).includes(key);
   }
 
   stop(key: string) {
