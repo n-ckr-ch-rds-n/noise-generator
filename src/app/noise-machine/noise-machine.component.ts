@@ -64,4 +64,7 @@ export class NoiseMachineComponent extends Instrument implements OnInit {
     }
   }
 
+  play() {
+    this.generateNoise();
+  }
 }
