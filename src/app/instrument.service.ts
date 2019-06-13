@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IOscillatorNode, IBaseAudioContext, IAudioBufferSourceNode } from 'standardized-audio-context';
 import {OscillatorComponent} from './oscillator/oscillator.component';
+import {Instrument} from './instrument';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstrumentService {
-  instrumentBank: Array<OscillatorComponent> = [];
+  instrumentBank: Array<Instrument> = [];
   activeOscillators: Array<Record<string, IOscillatorNode<IBaseAudioContext>>> = [];
   fxConfig = {
     oscillator1: {vibratoRate: 0, vibratoDepth: 0},
@@ -16,14 +17,14 @@ export class InstrumentService {
 
   constructor() { }
 
-  addOscillatorToBank(oscillatorComponent: OscillatorComponent) {
-    this.instrumentBank.push(oscillatorComponent);
+  addInstrumentToBank(instrument: Instrument) {
+    this.instrumentBank.push(instrument);
   }
 
-  removeOscillatorFromBank(oscillatorComponent: OscillatorComponent) {
+  removeInstrumentFromBank(instrument: Instrument) {
     if (this.instrumentBank) {
       this.instrumentBank = this.instrumentBank
-        .filter(instrument => instrument !== oscillatorComponent);
+        .filter(inst => inst !== instrument);
     }
   }
 

@@ -4,13 +4,14 @@ import { IOscillatorNode, IBaseAudioContext, IGainNode, TOscillatorType } from '
 import {InstrumentService} from '../instrument.service';
 import {frequencyByKey} from '../frequency.by.key';
 import {FxBoxComponent} from '../fx-box/fx-box.component';
+import {Instrument} from '../instrument';
 
 @Component({
   selector: 'app-oscillator',
   templateUrl: './oscillator.component.html',
   styleUrls: ['./oscillator.component.scss']
 })
-export class OscillatorComponent implements OnInit {
+export class OscillatorComponent extends Instrument implements OnInit {
   public oscillator: IOscillatorNode<IBaseAudioContext>;
   public gainNode: IGainNode<IBaseAudioContext>;
   waveType: TOscillatorType;
@@ -22,8 +23,9 @@ export class OscillatorComponent implements OnInit {
   @ViewChild(FxBoxComponent)
   fxBox: FxBoxComponent;
 
-  constructor(private audioContext: AudioContext,
-              private instrumentService: InstrumentService) { }
+  constructor(private audioContext: AudioContext, public instrumentService: InstrumentService) {
+    super(instrumentService);
+  }
 
   ngOnInit() { }
 
@@ -78,9 +80,9 @@ export class OscillatorComponent implements OnInit {
 
   switchHandler(switchedOn: boolean): void {
     if (switchedOn) {
-      this.instrumentService.addOscillatorToBank(this);
+      this.instrumentService.addInstrumentToBank(this);
     } else {
-      this.instrumentService.removeOscillatorFromBank(this);
+      this.instrumentService.removeInstrumentFromBank(this);
     }
   }
 }

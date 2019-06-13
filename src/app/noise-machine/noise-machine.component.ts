@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import {AudioContext, IAudioBuffer, IAudioContext,
   IAudioBufferSourceNode, IBaseAudioContext, IBiquadFilterNode} from 'standardized-audio-context';
 import {MatSliderChange} from '@angular/material';
+import {InstrumentService} from '../instrument.service';
+import {Instrument} from '../instrument';
 
 @Component({
   selector: 'app-noise-machine',
   templateUrl: './noise-machine.component.html',
   styleUrls: ['./noise-machine.component.scss']
 })
-export class NoiseMachineComponent implements OnInit {
+export class NoiseMachineComponent extends Instrument implements OnInit {
   audioContext: IAudioContext;
   whiteNoise: IAudioBufferSourceNode<IBaseAudioContext>;
   filter: IBiquadFilterNode<IBaseAudioContext>;
 
-  constructor() { }
+  constructor(public instrumentService: InstrumentService) {
+    super(instrumentService);
+  }
 
   ngOnInit() {
     this.audioContext = new AudioContext();
@@ -52,7 +56,12 @@ export class NoiseMachineComponent implements OnInit {
     this.filter.frequency.setValueAtTime(event.value, this.audioContext.currentTime);
   }
 
-  switchHandler(switchedOn: boolean) {
-    switchedOn ? this.generateNoise() : this.stop();
+  switchHandler(switchedOn: boolean): void {
+    if (switchedOn) {
+      this.instrumentService.addInstrumentToBank(this);
+    } else {
+      this.instrumentService.removeInstrumentFromBank(this);
+    }
   }
+
 }
