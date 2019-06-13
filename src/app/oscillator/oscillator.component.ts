@@ -11,8 +11,8 @@ import {FxBoxComponent} from '../fx-box/fx-box.component';
   styleUrls: ['./oscillator.component.scss']
 })
 export class OscillatorComponent implements OnInit {
-  private oscillator: IOscillatorNode<IBaseAudioContext>;
-  private gainNode: IGainNode<IBaseAudioContext>;
+  public oscillator: IOscillatorNode<IBaseAudioContext>;
+  public gainNode: IGainNode<IBaseAudioContext>;
   waveType: TOscillatorType;
   detuneValue = 0;
 
